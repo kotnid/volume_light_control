@@ -44,39 +44,40 @@ while True:
 
             length = math.hypot(x2-x1 , y2-y1)
 
-            if handType == "Left":
-                cTime = time.time()
-        
+            if (500 < x1 < 1300) and (300 < y1 < 450):
+                if handType == "Left":
+                    cTime = time.time()
+            
 
-                Time_diff = cTime - pTime
+                    Time_diff = cTime - pTime
 
-                if Time_diff > 0.1:
+                    if Time_diff > 0.3:
 
-                    volume.SetMasterVolumeLevel(0,None)
-                    minVol = volRange[0]
-                    maxVol = volRange[1]
+                        volume.SetMasterVolumeLevel(0,None)
+                        minVol = volRange[0]
+                        maxVol = volRange[1]
 
-                    vol = np.interp(length , [50 , 300] , [minVol , maxVol])
-                    volume.SetMasterVolumeLevel(vol , None)       
+                        vol = np.interp(length , [50 , 300] , [minVol , maxVol])
+                        volume.SetMasterVolumeLevel(vol , None)       
 
-                    print(f"volume now : {vol}") 
+                        print(f"volume now : {vol}") 
 
-                    pTime = cTime
+                        pTime = cTime
 
-            elif handType == "Right":
-                    cTime_2 = time.time()
-        
+                elif handType == "Right":
+                        cTime_2 = time.time()
+            
 
-                    Time_diff = cTime_2 - pTime_2
+                        Time_diff = cTime_2 - pTime_2
 
-                    if Time_diff > 0.1:
+                        if Time_diff > 0.1:
 
-                        Bright = np.interp(length , [50 , 300] , [0 , 100])
-                        sbc.set_brightness(Bright)     
+                            Bright = np.interp(length , [50 , 300] , [0 , 100])
+                            sbc.set_brightness(Bright)     
 
-                        print(f"bright now : {Bright}") 
+                            print(f"bright now : {Bright}") 
 
-                        pTime_2 = cTime_2
+                            pTime_2 = cTime_2
 
 
     
